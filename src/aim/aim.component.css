@@ -1,0 +1,44 @@
+.btn-ai{
+  max-width: 100%;
+}
+
+.record-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #4285f4;
+    color: white;
+  }
+  
+  .record-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .record-button.recording {
+    background-color: #ea4335;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .record-button.loading {
+    background-color: #fbbc05;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .error-message {
+    color: #ea4335;
+    margin-top: 5px;
+  }
+  
+  .response-message {
+    color: #34a853;
+    margin-top: 5px;
+  }

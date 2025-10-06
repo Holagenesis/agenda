@@ -1,0 +1,59 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.calendar {
+    font-family: "Poppins", sans-serif;
+    max-width: 100%;
+    border-radius: 8px;
+    padding: 16px;
+  
+  background: rgba(218, 208, 208, 0.521); /* Ligera transparencia blanca */
+  backdrop-filter: blur(6px); /* Desenfoque sutil, casi imperceptible */
+  border: 1px solid rgba(255, 255, 255, 0.6); /* Borde muy tenue */
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.562); /* Mantenemos el shadow original */
+  }
+
+  .btn-calendar{
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    cursor:pointer;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .calendar-day {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    cursor: pointer;
+  
+    &:hover {
+      background: #62b5e2;
+    }
+  }
+
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+ 
+    text-align: center;
+    font-size:1rem;
+  }
+
+  .empty {
+    visibility: hidden;
+  }

@@ -1,0 +1,94 @@
+<div class="item-list-container">
+
+  <!-- Modal de Confirmación de Eliminación -->
+  <div *ngIf="showDeleteModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirmar Eliminación</h3>
+        <span class="modal-close" (click)="closeDeleteModal()">×</span>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres eliminar <strong>"{{ currentItem?.description }}"</strong>?</p>
+        <p class="modal-details">ID: {{ currentItem?.id }} | Fecha: {{ currentItem?.date | date:'mediumDate' }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="closeDeleteModal()">Cancelar</button>
+        <button class="btn-delete" (click)="confirmDelete()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="items.length === 0" class="empty-message">No hay elementos en la lista.</p>
+
+  <!-- Grid de items -->
+  <div *ngIf="items.length > 0" class="items-grid">
+    
+    <div class="grid-item" *ngFor="let item of paginatedItems">
+      <div class="item-card">
+        <div class="card-header">
+          <span class="item-close" (click)="openDeleteModal(item)">×</span>
+          <span class="item-edit" (click)="toggleEdit(item)">✎</span>
+        </div>
+        
+        <div class="container-body">
+          <!-- MODO EDICIÓN -->
+          <div *ngIf="isEditing(item.id); else viewMode">
+            <div class="edit-form">
+              <div class="form-group">
+                <label>Descripción:</label>
+                <textarea 
+                  #editInput
+                  [(ngModel)]="item.editDescription"
+                  class="edit-textarea"
+                  (keydown.enter)="$event.preventDefault(); saveEdit(item)"
+                  placeholder="Escribe la descripción...">
+                </textarea>
+              </div>
+              <div class="edit-buttons">
+                <button class="btn-save" (click)="saveEdit(item)">💾</button>
+                <button class="btn-cancel" (click)="cancelEdit(item)">✗</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODO VISUALIZACIÓN -->
+          <ng-template #viewMode>
+            <div class="card-body">
+              <p id="card-body-date">{{ item.date | date:'MMMM, d' }}</p>
+            </div>
+            <div class="card-body">
+              <p>{{ item.description }}</p>
+            </div>
+            <div class="card-body" *ngIf="item.hour">
+              <p><strong>Hora:</strong> {{ formatHour(item.hour) }}</p>
+            </div>
+          </ng-template>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Paginación -->
+  <div *ngIf="items.length > itemsPerPage" class="pagination-controls">
+    <button 
+      (click)="previousPage()" 
+      [disabled]="currentPage === 1"
+      class="pagination-btn">
+      ← Anterior
+    </button>
+    
+    <span class="page-info">
+      Página {{ currentPage }} de {{ totalPages }}
+    </span>
+    
+    <button 
+      (click)="nextPage()" 
+      [disabled]="currentPage === totalPages"
+      class="pagination-btn">
+      Siguiente →
+    </button>
+  </div>
+
+</div>

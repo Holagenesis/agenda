@@ -1,0 +1,41 @@
+<div class="calendar-container">
+  <div class="week-grid">
+    <!-- Cabecera de días -->
+    @for (day of weekDays; track $index) {
+      <div class="day-header">{{ day }}</div>
+    }
+
+    <!-- Tarjetas de cada día -->
+    @for (day of weekDays; track $index; let i = $index) {
+      <div class="day-card" [class.has-activities]="getActivitiesForDay(i).length > 0">
+        <!-- X de cierre CORREGIDO -->
+        <span 
+          class="item-close" 
+          (click)="confirmDelete(i)"
+          [attr.aria-label]="'Eliminar actividades del día ' + getDayNumber(i)">
+          ×
+        </span>
+
+        <!-- Contenido principal -->
+        <div class="card-body">
+          <!-- Fecha -->
+          <p class="card-date">{{ getDayNumber(i) }}</p>
+
+          <!-- Bloques de actividad (horas) -->
+          @if (getActivitiesForDay(i).length > 0) {
+            <div class="activity-blocks">
+              @for (act of getActivitiesForDay(i); track $index) {
+                <div class="activity-badge" [style.background-color]="act.color">
+                  {{ formatHour(act.hour) }}<br>
+                  {{ getTruncatedTitle(act.title) }}
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="no-activities">—</div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

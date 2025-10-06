@@ -1,0 +1,35 @@
+<div class="big-container">
+  <div class="menu-content">
+    <app-menu (vistaSeleccionada)="cambiarVista($event)"></app-menu>
+  </div>
+  
+
+  <div *ngIf="vistaActual === 'dashboard'" class="right-container">
+    <div class="left-panel">
+      <div class="card">
+        <app-item-list></app-item-list>
+      </div>
+    </div>
+    <div class="right-panel">
+      <app-home></app-home>
+      <div class="asistant">
+        <div class="inner-right-card">
+          <div class="number-agenda">{{ todayActivityCount }}</div>
+          <h3>Conteo </h3>
+          <div class="inner-right-card-icon">
+            <img src="calendar-date-icon-illustration.png" alt="calendar-icon">
+          </div>
+        </div>
+      </div>
+      <div class="asistant">
+        <h3>Asistente de IA</h3>
+        <app-aim></app-aim>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-content">
+    <app-big-calendar *ngIf="vistaActual === 'calendario'"></app-big-calendar>
+  </div>
+  
+</div>

@@ -1,0 +1,23 @@
+<div class="calendar">
+    <div class="calendar-header">
+      <button (click)="changeMonth(-1)" class="btn-calendar"><i class="bi bi-arrow-left-circle"></i></button>
+      <h2>{{ getMonthName() }}</h2> 
+      <button (click)="changeMonth(1)"class="btn-calendar"><i class="bi bi-arrow-right-circle"></i></button>
+    </div>
+
+    <!-- Días de la semana -->
+    <div class="weekdays">
+        @for (day of weekDays; track $index) {  <!-- Cambiado: track $index -->
+        <div class="weekday">{{ day }}</div>
+        }
+    </div>
+  
+    <div class="calendar-grid">
+        @for (blank of getLeadingBlanks(); track $index) {  <!-- Cambiado: track $index -->
+            <div class="calendar-day empty"></div>
+          }
+        @for (day of getDaysInMonth(); track $index) {  <!-- Cambiado: track $index -->
+          <div class="calendar-day">{{ day }}</div>
+        }
+      </div>
+</div>

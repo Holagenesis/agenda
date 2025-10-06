@@ -1,0 +1,22 @@
+<p>ai works!</p>
+<!-- src/app/components/assistant/assistant.component.html -->
+<button (click)="activateAssistant()">
+    @if (!isLoading) {
+      <span>Activar Asistente</span>
+    } @else {
+      <span>Procesando...</span>
+    }
+  </button>
+  
+  @if (response) {
+    <div class="response">
+      <p>Estado: {{ response.status }}</p>
+      <p>Mensaje: {{ response.message }}</p>
+    </div>
+  }
+  
+  @if (error) {
+    <div class="error">
+      {{ error }}
+    </div>
+  }
