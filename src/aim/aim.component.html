@@ -1,4 +1,26 @@
+<div *ngIf="showDuplicateWarning" class="duplicate-warning-overlay">
+  <div class="duplicate-warning">
+    <div class="warning-content">
+      <h4>⚠️ Actividad Similar Encontrada</h4>
+      <p>{{ duplicateMessage }}</p>
+      <div class="warning-actions">
+        <button class="btn btn-cancel" (click)="cancelDuplicate()" [disabled]="isLoading">
+          Cancelar
+        </button>
+        <button class="btn btn-confirm" (click)="confirmDuplicate()" [disabled]="isLoading">
+          {{ isLoading ? 'Procesando...' : 'Agregar Igual' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- El resto de tu template sigue igual -->
+
 <div class="btn-ai">
+  <!-- Tu contenido existente se mantiene igual -->
+
+
   <button 
     (mousedown)="startRecording()" 
     (mouseup)="stopRecording()"
@@ -23,3 +45,4 @@
     {{ error }}
   </div>
 </div>
+

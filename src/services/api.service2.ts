@@ -13,4 +13,9 @@ export class ApiService2 {
   sendAudioToAssistant(audioData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/ia_asistente2`, audioData);
   }
+
+  // En tu api.service2.ts, añade este método:
+  confirmDuplicateActivity(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/confirm-duplicate`, data);
+  }
 }
